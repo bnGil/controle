@@ -6,17 +6,16 @@ async function scrapeNaturalInt() {
   const page = await browser.newPage();
   await page.goto("https://www.naturalint.com/jobs/");
 
-  const jobTitles = await page.$$eval("h2.item-title", (titles) =>
-    titles.map((title) => {
-      return title.textContent;
+  const jobs = await page.$$eval("div.job-items a", (jobItems) =>
+    jobItems.map((jobItem) => {
+      return {
+        title: jobItem.querySelector("h2.item-title").textContent,
+        department: jobItem.querySelector("h3.item-cat").textContent,
+      };
     })
   );
 
-  const jobDepartments = await page.$$eval("h3.item-cat", (departments) =>
-    departments.map((department) => {
-      return department.textContent;
-    })
-  );
+  console.log(jobs[0]);
 
   browser.close();
 }
