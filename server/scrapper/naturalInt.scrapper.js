@@ -11,10 +11,14 @@ async function scrapeNaturalInt() {
       const jobPageLink = jobItem.href;
       const title = jobItem.querySelector("h2.item-title").textContent;
       const department = jobItem.querySelector("h3.item-cat").textContent;
+      const location = "Tel Aviv";
+      const company = "Natural Intelligence";
       return {
         title,
         department,
         jobPageLink,
+        location,
+        company,
       };
     })
   );
