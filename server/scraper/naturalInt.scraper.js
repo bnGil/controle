@@ -1,8 +1,7 @@
 import puppeteer from "puppeteer";
-import fs from "fs";
 
-async function scrapeNaturalInt() {
-  const browser = await puppeteer.launch({ headless: false });
+export async function scrapeNaturalInt() {
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto("https://www.naturalint.com/jobs/");
 
@@ -51,9 +50,14 @@ async function scrapeNaturalInt() {
       responsibilities,
       requirements,
     };
+
+    jobs[i].jobId = getNaturalJobIdFromURL(jobs[i].jobPageLink);
   }
 
   browser.close();
+  return jobs;
 }
 
-scrapeNaturalInt();
+function getNaturalJobIdFromURL(url) {
+  return url.split("/")[6];
+}

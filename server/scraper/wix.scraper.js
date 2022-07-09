@@ -1,7 +1,6 @@
 import puppeteer from "puppeteer";
-import fs from "fs";
 
-async function scrapeWix() {
+export async function scrapeWix() {
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
   await page.goto("https://www.wix.com/jobs/locations/tel-aviv", {
@@ -56,8 +55,6 @@ async function scrapeWix() {
     };
   }
 
-  console.log(jobs[0]);
   browser.close();
+  return jobs;
 }
-
-scrapeWix();

@@ -1,11 +1,9 @@
-// import puppeteer from "puppeteer";
 import puppeteer from "puppeteer-extra";
 import StealthPlugin from "puppeteer-extra-plugin-stealth";
-import fs from "fs";
 
-async function scrapeFiverr() {
+export async function scrapeFiverr() {
   puppeteer.use(StealthPlugin());
-  const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto("https://www.fiverr.com/jobs/teams?location=tlv", {
     waitUntil: "networkidle0",
@@ -54,9 +52,14 @@ async function scrapeFiverr() {
       responsibilities,
       requirements,
     };
+
+    jobs[i].jobId = getFiverrJobIdFromURL(jobs[i].jobPageLink);
   }
 
   browser.close();
+  return jobs;
 }
 
-scrapeFiverr();
+function getFiverrJobIdFromURL(url) {
+  return url.split("/")[4];
+}
