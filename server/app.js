@@ -4,6 +4,7 @@ import cors from "cors";
 import { fileURLToPath } from "url";
 
 import "./db/mongoose.js";
+import { userRouter } from "./routes/user.routes.js";
 
 const fileName = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(fileName);
@@ -15,6 +16,8 @@ app.use(express.static(publicPath));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+
+app.use(userRouter);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(publicPath, "index.html"));
