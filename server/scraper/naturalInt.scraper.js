@@ -1,5 +1,7 @@
 import puppeteer from "puppeteer";
 
+import { pascalCaseStr } from "../utils/utilFunctions.js";
+
 export async function scrapeNaturalInt() {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
@@ -44,6 +46,9 @@ export async function scrapeNaturalInt() {
       "div.jobs-position-section.comeet-position-requirements > ul li",
       (lis) => lis.map((li) => li.textContent)
     );
+
+    jobs[i].department = pascalCaseStr(jobs[i].department);
+    jobs[i].title = pascalCaseStr(jobs[i].title);
 
     jobs[i].jobDescription = {
       description,
