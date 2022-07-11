@@ -3,7 +3,7 @@ import StealthPlugin from "puppeteer-extra-plugin-stealth";
 
 export async function scrapeFiverr() {
   puppeteer.use(StealthPlugin());
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
   try {
     await page.goto("https://www.fiverr.com/jobs/teams?location=tlv", {
@@ -12,7 +12,10 @@ export async function scrapeFiverr() {
 
     const deps = await page.$$eval("div.vlbNOzf", (departments) =>
       departments.map((department) => {
-        const departmentName = department.querySelector("a > h2").textContent;
+        const departmentStr = department.querySelector("a > h2").textContent;
+        const departmentArr = departmentStr.split(" ");
+        departmentArr.pop();
+        const departmentName = departmentArr.join(" ");
         const company = "Fiverr";
         const location = "Tel Aviv";
         const depJobs = Array.from(
@@ -23,7 +26,7 @@ export async function scrapeFiverr() {
           title: job.querySelector("div > h6").textContent,
           company,
           location,
-          departmentName,
+          department: departmentName,
         }));
       })
     );
@@ -58,12 +61,13 @@ export async function scrapeFiverr() {
 
       jobs[i].jobId = getFiverrJobIdFromURL(jobs[i].jobPageLink);
     }
+
+    browser.close();
+    console.log(jobs);
+    return jobs;
   } catch (err) {
     console.log(err.message);
   }
-
-  browser.close();
-  return jobs;
 }
 
 function getFiverrJobIdFromURL(url) {

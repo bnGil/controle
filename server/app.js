@@ -5,6 +5,7 @@ import { fileURLToPath } from "url";
 
 import "./db/mongoose.js";
 import { indexRouter } from "./routes/index.routes.js";
+import "./services/addJobsToDB.service.js";
 
 const fileName = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(fileName);

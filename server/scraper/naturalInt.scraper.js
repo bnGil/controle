@@ -28,8 +28,9 @@ export async function scrapeNaturalInt() {
     for (let i = 0; i < jobs.length; i++) {
       await Promise.all([
         page.waitForNavigation(),
-        page.goto(jobs[i].jobPageLink),
-        page.waitForSelector(".jobs-position-info"),
+        page.goto(jobs[i].jobPageLink, {
+          waitUntil: "networkidle0",
+        }),
       ]);
 
       const description = await page.$$eval(
@@ -59,12 +60,12 @@ export async function scrapeNaturalInt() {
 
       jobs[i].jobId = getNaturalJobIdFromURL(jobs[i].jobPageLink);
     }
+
+    browser.close();
+    return jobs;
   } catch (err) {
     console.log(err.message);
   }
-
-  browser.close();
-  return jobs;
 }
 
 function getNaturalJobIdFromURL(url) {
