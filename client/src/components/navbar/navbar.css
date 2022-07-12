@@ -9,10 +9,10 @@
 
 .navbar {
   height: 100%;
-  width: 80%;
+  width: 90%;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 
 .links-container {

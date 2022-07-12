@@ -9,6 +9,7 @@ function Navbar() {
   return (
     <div className="navbar-container">
       <nav className="navbar">
+        <h1>Logo</h1>
         <div className="links-container">
           <NavLink className="navlink" exact to="/">
             Home
@@ -23,7 +24,14 @@ function Navbar() {
             My Applications
           </NavLink>
         </div>
-        <div></div>
+        <div className="linkes-container">
+          <NavLink className="navlink" exact to="/register">
+            Register
+          </NavLink>
+          <NavLink className="navlink" exact to="/login">
+            Login
+          </NavLink>
+        </div>
       </nav>
     </div>
   );
