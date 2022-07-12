@@ -41,4 +41,9 @@ export const userSchema = new mongoose.Schema({
       },
     },
   ],
+  likedJobs: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: "Job",
+    default: [],
+  },
 });

@@ -8,6 +8,11 @@ export const jobSchema = new mongoose.Schema(
     jobPageLink: String,
     jobDescription: {},
     jobId: String,
+    usersWhoLiked: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "User",
+      default: [],
+    },
   },
   { timestamps: true }
 );

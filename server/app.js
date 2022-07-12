@@ -27,15 +27,3 @@ app.get("*", (req, res) => {
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
-
-// import { Job } from "./models/job/job.model.js";
-// async function main() {
-//   const jobs = await Job.find({
-//     department: { $regex: "", $options: "i" },
-//   });
-//   const companies = await Job.find({}).distinct("company");
-//   const departments = await Job.find({}).distinct("department");
-//   // console.log("----------------------");
-//   console.log(departments);
-// }
-// await main();
