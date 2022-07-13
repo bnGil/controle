@@ -1,8 +1,6 @@
-import React, { useState, useContext } from "react";
-import { useCookies } from "react-cookie";
+import React, { useState } from "react";
 
 import "./loginPage.css";
-import controleAPI from "../../api/controleAPI";
 import { useUser } from "../../context/userContext";
 
 function LoginPage() {
@@ -10,14 +8,13 @@ function LoginPage() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const { setUser, login } = useUser();
+  const { login } = useUser();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      //await login(email,password)
       await login(email, password);
     } catch (err) {
       setError(err.message);

@@ -29,9 +29,7 @@ function UserProvider({ children }) {
   };
 
   const register = async (newUser) => {
-    const { data } = await controleAPI.post("/user/register", {
-      newUser,
-    });
+    const { data } = await controleAPI.post("/user/register", newUser);
     setToken(data.token);
     setCookie("token", data.token);
     setUser(data.user);
