@@ -2,10 +2,11 @@ import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 
 import "./navbar.css";
-import { userContext } from "../../context/userContext";
+import { useUser } from "../../context/userContext";
 
 function Navbar() {
-  const { user, setUser } = useContext(userContext);
+  const { user, logout } = useUser();
+
   return (
     <div className="navbar-container">
       <nav className="navbar">
@@ -25,12 +26,20 @@ function Navbar() {
           </NavLink>
         </div>
         <div className="linkes-container">
-          <NavLink className="navlink" exact to="/register">
-            Register
-          </NavLink>
-          <NavLink className="navlink" exact to="/login">
-            Login
-          </NavLink>
+          {user ? (
+            <a href="#" className="navlink" onClick={logout}>
+              Logout
+            </a>
+          ) : (
+            <>
+              <NavLink className="navlink" exact to="/register">
+                Register
+              </NavLink>
+              <NavLink className="navlink" exact to="/login">
+                Login
+              </NavLink>
+            </>
+          )}
         </div>
       </nav>
     </div>
