@@ -24,7 +24,7 @@ const useFetchAPI = ({ endPoint, method, body = null, headers = null }) => {
       }
       fetchDataFromAPI();
     };
-  }, [endPoint]);
+  }, [endPoint, method, body, headers]);
 
   return { data, error, loading };
 };
