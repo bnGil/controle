@@ -21,7 +21,6 @@ function JobsPage() {
             search: term,
           },
         });
-        //`/jobs?page=${page}&search=${term}`
         setData(data);
       } catch (err) {
         setError(err.message);
@@ -30,13 +29,17 @@ function JobsPage() {
       }
     };
 
-    const timeoutId = setTimeout(() => {
+    if (!term) {
       fetchDataFromAPI();
-    }, 1000);
+    } else {
+      const timeoutId = setTimeout(() => {
+        fetchDataFromAPI();
+      }, 1000);
 
-    return () => {
-      clearTimeout(timeoutId);
-    };
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    }
   }, [page, term]);
 
   const printJobs = () => {
@@ -64,7 +67,7 @@ function JobsPage() {
       ) : (
         <ul className="jobs-list">{printJobs()}</ul>
       )}
-      <Pagination maxPage={maxPage} goToPage={setPage} />
+      {maxPage > 1 && <Pagination maxPage={maxPage} goToPage={setPage} />}
     </div>
   );
 }
