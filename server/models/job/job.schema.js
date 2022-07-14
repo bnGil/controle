@@ -13,6 +13,8 @@ export const jobSchema = new mongoose.Schema(
       ref: "User",
       default: [],
     },
+    location: String,
+    companyImg: String,
   },
   { timestamps: true }
 );
