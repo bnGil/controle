@@ -1,0 +1,9 @@
+.page-list {
+  display: flex;
+}
+
+.page-link {
+  list-style-type: none;
+  margin: 3px;
+  cursor: pointer;
+}
