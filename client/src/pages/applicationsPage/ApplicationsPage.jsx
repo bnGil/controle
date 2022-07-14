@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
+
 import Button from "../../components/button/Button";
 import PopUp from "../../components/popUp/PopUp";
-
 import { useUser } from "../../context/userContext";
 import "./applicationsPage.css";
 
