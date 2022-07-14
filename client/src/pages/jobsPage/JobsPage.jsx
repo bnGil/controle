@@ -43,6 +43,9 @@ function JobsPage() {
   }, [page, term]);
 
   const printJobs = () => {
+    if (data.total === 0) {
+      return <h1>No results</h1>;
+    }
     return data.jobs.map((job) => <Job job={job} key={job._id} />);
   };
 
