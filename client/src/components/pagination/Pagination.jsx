@@ -3,7 +3,7 @@ import "./pagination.css";
 
 function Pagination({ maxPage, goToPage }) {
   const pageNumbers = [];
-  for (let i = 1; i < maxPage; i++) {
+  for (let i = 1; i <= maxPage; i++) {
     pageNumbers.push(i);
   }
 
