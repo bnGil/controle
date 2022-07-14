@@ -9,13 +9,19 @@ function JobsPage() {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [params, setParams] = useState("");
+  const [term, setTerm] = useState("");
   const [page, setPage] = useState(1);
 
   useEffect(() => {
     const fetchDataFromAPI = async () => {
       try {
-        const { data } = await controleAPI.get(`/jobs?page=${page}&${params}`);
+        const { data } = await controleAPI.get("/jobs", {
+          params: {
+            page: page,
+            search: term,
+          },
+        });
+        //`/jobs?page=${page}&search=${term}`
         setData(data);
       } catch (err) {
         setError(err.message);
@@ -23,8 +29,15 @@ function JobsPage() {
         setLoading(false);
       }
     };
-    fetchDataFromAPI();
-  }, [params, page]);
+
+    const timeoutId = setTimeout(() => {
+      fetchDataFromAPI();
+    }, 1000);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [page, term]);
 
   const printJobs = () => {
     return data.jobs.map((job) => <Job job={job} key={job._id} />);
@@ -39,7 +52,12 @@ function JobsPage() {
   return (
     <div className="jobspage-container">
       <div className="search">
-        <input type="text" />
+        <input
+          type="text"
+          placeholder="Job Title..."
+          value={term}
+          onChange={(e) => setTerm(e.target.value)}
+        />
       </div>
       {loading ? (
         <h1>spinner</h1>
