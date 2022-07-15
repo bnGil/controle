@@ -29,19 +29,26 @@ function Job({ job }) {
         }
       );
     }
-    // else, set isLike to true and send PUT like request
   };
-  console.log(isNoUserAndLiked);
 
   return (
     <>
       <li className="job-item">
         <img src={job.companyImg} alt="company" className="company-img" />
-        <div className="job-content">
-          <h4 className="company-name">{job.company}</h4>
-          <h3 className="job-title">{job.title}</h3>
-          <h5 className="job-location">{job.location}</h5>
-        </div>
+        <NavLink
+          className="navlink"
+          exact
+          to={{
+            pathname: `/jobs/${job.company}/${job.jobId}`,
+            state: { job },
+          }}
+        >
+          <div className="job-content">
+            <h4 className="company-name">{job.company}</h4>
+            <h3 className="job-title">{job.title}</h3>
+            <h5 className="job-location">{job.location}</h5>
+          </div>
+        </NavLink>
         <img
           className="heartIcon"
           src={isLiked ? solidheart : emptyheart}
