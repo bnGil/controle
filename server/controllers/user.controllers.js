@@ -1,3 +1,4 @@
+import { sendWelcomeEmail } from "../emails/user.js";
 import { User } from "../models/user/user.model.js";
 
 export const loginUser = async (req, res) => {
@@ -18,6 +19,7 @@ export const registerUser = async (req, res) => {
   try {
     await user.save();
     const token = await user.generateAuthToken();
+    sendWelcomeEmail(user.email, user.firstName);
     res.status(201).send({ user, token });
   } catch (err) {
     res.status(400).send(err.message);

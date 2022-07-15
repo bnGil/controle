@@ -3,6 +3,7 @@ import cron from "node-cron";
 import { scrapeFiverr } from "../scraper/fiverr.scraper.js";
 import { scrapeNaturalInt } from "../scraper/naturalInt.scraper.js";
 import { Job } from "../models/job/job.model.js";
+import { sendJobIsRemovedEmail } from "../emails/user.js";
 
 export async function addJobsToDB() {
   try {
@@ -33,9 +34,16 @@ export async function addJobsToDB() {
       }
     });
 
-    //! send mail to users who liked jobs that are in the jobsToRemove array telling them that the job is not relevant.
-
     for (let jobToRemove of jobsToRemove) {
+      await jobToRemove.populate("usersWhoLiked").execPopulate();
+      for (let user of jobToRemove.usersWhoLiked) {
+        sendJobIsRemovedEmail(
+          user.email,
+          user.firstName,
+          jobToRemove.title,
+          jobToRemove.company
+        );
+      }
       await Job.deleteOne({ _id: jobToRemove._id });
     }
   } catch (err) {

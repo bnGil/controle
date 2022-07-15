@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/bnGil/bank-api#readme",
   "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
     "axios": "^0.27.2",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
