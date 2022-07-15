@@ -10,14 +10,8 @@ function JobDetailsPage() {
   const printDescription = () =>
     jobDescription.description.map((str, i) => <p key={i}>{str}</p>);
 
-  const printResponsibilities = () =>
-    jobDescription.responsibilities.map((str, i) => (
-      <li className="job-details-li" key={i}>
-        {str}
-      </li>
-    ));
-  const printRequirements = () =>
-    jobDescription.requirements.map((str, i) => (
+  const printLis = (arr) =>
+    arr.map((str, i) => (
       <li className="job-details-li" key={i}>
         {str}
       </li>
@@ -31,11 +25,11 @@ function JobDetailsPage() {
       </div>
       <div className="responsibilities">
         <h2 className="job-details-header">Responsibilities</h2>
-        <ul>{printResponsibilities()}</ul>
+        <ul>{printLis(jobDescription.responsibilities)}</ul>
       </div>
       <div className="requirements">
         <h2 className="job-details-header">Requirements</h2>
-        <ul>{printRequirements()}</ul>
+        <ul>{printLis(jobDescription.requirements)}</ul>
       </div>
     </div>
   );
