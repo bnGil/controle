@@ -4,6 +4,7 @@ import "./jobsPage.css";
 import Job from "../../components/job/Job";
 import controleAPI from "../../api/controleAPI";
 import AppPagination from "../../components/pagination/Pagination";
+import filterIcon from "../../assets/images/filter-icon.svg";
 
 function JobsPage() {
   const [data, setData] = useState({});
@@ -66,6 +67,7 @@ function JobsPage() {
           value={term}
           onChange={(e) => setTerm(e.target.value)}
         />
+        <img className="filter-icon" src={filterIcon} alt="filter" />
       </div>
       {loading ? (
         <h1>spinner</h1>
