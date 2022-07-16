@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 import "./job.css";
@@ -13,6 +13,14 @@ function Job({ job }) {
   const { user, token } = useUser();
   const [isLiked, setIsLiked] = useState(false);
   const [isNoUserAndLiked, setIsNoUserAndLiked] = useState(false);
+
+  useEffect(() => {
+    if (user) {
+      if (user.likedJobs.indexOf(job._id) !== -1) {
+        setIsLiked(true);
+      }
+    }
+  }, []);
 
   const handleLike = async () => {
     if (!user) {
