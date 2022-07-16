@@ -13,6 +13,7 @@ function MobileNavigation({ token, logout }) {
       onClose={() => setIsOpen(false)}
       isOpen={isOpen}
       disableAutoFocus
+      right
     >
       <NavLink onClick={() => setIsOpen(false)} exact to="/">
         Home

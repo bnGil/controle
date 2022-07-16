@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 import "./job.css";
-import emptyheart from "../../assets/images/emptyheart.png";
-import solidheart from "../../assets/images/solidheart.png";
+import emptyheart from "../../assets/images/emptyheart.svg";
+import solidheart from "../../assets/images/solidheart.svg";
 import { useUser } from "../../context/userContext";
 import Button from "../../components/button/Button";
 import PopUp from "../../components/popUp/PopUp";
