@@ -1,6 +1,46 @@
+.loginPage-container {
+  height: calc(100% - 50px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .form-container {
   display: flex;
   flex-direction: column;
   width: 400px;
-  margin: auto;
+  height: fit-content;
+}
+
+.form-container input[type="email"],
+input[type="password"],
+input[type="text"] {
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+.form-container input[type="submit"] {
+  background-color: #1976d2;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.form-container input[type="submit"]:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .loginPage-container {
+    width: 100%;
+  }
+  .form-container {
+    width: 80%;
+  }
 }

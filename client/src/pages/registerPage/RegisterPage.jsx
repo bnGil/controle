@@ -35,34 +35,56 @@ function RegisterPage() {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="First Name..."
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Last Name..."
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-        />
-        <input
-          type="email"
-          placeholder="Enter email..."
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Enter password..."
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <input className="button" type="submit" value="Login" />
-      </form>
+    <div className="registerPage-container">
+      <h1>Sign Up</h1>
+      <div className="form-container">
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="fname">
+            <b>First Name</b>
+          </label>
+          <input
+            type="text"
+            id="fname"
+            placeholder="First Name"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+
+          <label htmlFor="lname">
+            <b>Last Name</b>
+          </label>
+          <input
+            type="text"
+            id="lname"
+            placeholder="Last Name"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+
+          <label htmlFor="email">
+            <b>Email</b>
+          </label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+
+          <label htmlFor="password">
+            <b>Password</b>
+          </label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <input type="submit" value="Register" />
+        </form>
+      </div>
     </div>
   );
 }

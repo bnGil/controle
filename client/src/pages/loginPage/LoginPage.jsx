@@ -32,9 +32,10 @@ function LoginPage() {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div className="form-container">
+    <div className="loginPage-container">
+      <h1>Sign In</h1>
+      <div className="form-container">
+        <form onSubmit={handleSubmit}>
           <label htmlFor="email">
             <b>Email</b>
           </label>
@@ -47,7 +48,7 @@ function LoginPage() {
           />
 
           <label htmlFor="password">
-            <b>Email</b>
+            <b>Password</b>
           </label>
           <input
             type="password"
@@ -56,9 +57,9 @@ function LoginPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <input className="button" type="submit" value="Login" />
-        </div>
-      </form>
+          <input type="submit" value="Login" />
+        </form>
+      </div>
     </div>
   );
 }
