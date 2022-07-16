@@ -65,11 +65,11 @@ function Job({ job }) {
         />
       </li>
       {isNoUserAndLiked && (
-        <PopUp text={"Need to sign in"}>
-          <NavLink className="navlink" exact to="/login">
+        <PopUp text={"You have to be logged in"}>
+          <NavLink exact to="/login">
             <Button text={"Login"}></Button>
           </NavLink>
-          <NavLink className="navlink" exact to="/register">
+          <NavLink exact to="/register">
             <Button text={"Register"}></Button>
           </NavLink>
           <Button text={"Cancel"} onClick={() => setIsNoUserAndLiked(false)} />

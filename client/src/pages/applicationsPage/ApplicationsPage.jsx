@@ -11,11 +11,11 @@ function ApplicationsPage() {
 
   if (!user) {
     return (
-      <PopUp text={"Need to sign in"}>
-        <NavLink className="navlink" exact to="/login">
+      <PopUp text={"Please sign in first"}>
+        <NavLink exact to="/login">
           <Button text={"Login"}></Button>
         </NavLink>
-        <NavLink className="navlink" exact to="/register">
+        <NavLink exact to="/register">
           <Button text={"Register"}></Button>
         </NavLink>
       </PopUp>
