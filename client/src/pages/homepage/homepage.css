@@ -53,4 +53,7 @@
   .landing-content {
     width: 70%;
   }
+  .landing {
+    height: 100%;
+  }
 }
