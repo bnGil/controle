@@ -7,6 +7,17 @@
   box-shadow: 0 0 7px 2px #ccc;
 }
 
+.logo {
+  font-size: 34px;
+  text-decoration: none;
+  color: #333;
+}
+
+.logo span {
+  color: #1976d2;
+  font-weight: bold;
+}
+
 .navbar {
   height: 100%;
   width: 90%;

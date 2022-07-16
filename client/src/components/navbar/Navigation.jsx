@@ -6,7 +6,9 @@ function Navigation({ user, logout }) {
   return (
     <div className="navbar-container">
       <nav className="navbar">
-        <h1>Logo</h1>
+        <NavLink className="logo" exact to="/">
+          Cont<span>role</span>
+        </NavLink>
         <div className="links-container">
           <NavLink className="navlink" exact to="/">
             Home
