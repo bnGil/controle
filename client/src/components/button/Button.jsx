@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./button.css";
 
 function Button({ text, onClick = () => {} }) {
