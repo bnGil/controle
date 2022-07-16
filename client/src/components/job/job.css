@@ -38,5 +38,6 @@
 @media (max-width: 768px) {
   .job-item {
     width: 100%;
+    padding: 30px 30px;
   }
 }
