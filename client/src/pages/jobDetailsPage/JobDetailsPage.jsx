@@ -31,6 +31,9 @@ function JobDetailsPage() {
         <h2 className="job-details-header">Requirements</h2>
         <ul>{printLis(jobDescription.requirements)}</ul>
       </div>
+      <a className="visit" href={job.jobPageLink} target="_blank">
+        <>&#187;</> Visit the original page at {job.company}
+      </a>
     </div>
   );
 }
