@@ -19,6 +19,22 @@
   margin: 0 20px;
 }
 
+.job-details-link {
+  text-decoration: none;
+}
+
+.company-name {
+  color: #828282;
+}
+
+.job-title {
+  color: #333;
+}
+
+.job-location {
+  color: rgb(196, 196, 196);
+}
+
 @media (max-width: 768px) {
   .job-item {
     width: 100%;

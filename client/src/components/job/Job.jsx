@@ -44,7 +44,7 @@ function Job({ job }) {
       <li className="job-item">
         <img src={job.companyImg} alt="company" className="company-img" />
         <NavLink
-          className="navlink"
+          className="job-details-link"
           exact
           to={{
             pathname: `/jobs/${job.company}/${job.jobId}`,
