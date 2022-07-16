@@ -1,0 +1,15 @@
+.option-item {
+  margin: 2px;
+  padding: 2px 4px;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+  background-color: #dcdcdc;
+  list-style-type: none;
+  display: inline-block;
+}
+
+.option-item.active {
+  background-color: #1dbf73;
+  color: #ffffff;
+}

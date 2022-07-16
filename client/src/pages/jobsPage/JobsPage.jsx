@@ -14,6 +14,8 @@ function JobsPage() {
   const [term, setTerm] = useState("");
   const [page, setPage] = useState(1);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [companiesFilterStr, setCompaniesFilterStr] = useState("");
+  const [departmentsFilterStr, setDepartmentsFilterStr] = useState("");
 
   useEffect(() => {
     const fetchDataFromAPI = async () => {
@@ -24,6 +26,8 @@ function JobsPage() {
           params: {
             page: page,
             search: term,
+            company: companiesFilterStr,
+            department: departmentsFilterStr,
           },
         });
         setData(data);
@@ -45,7 +49,7 @@ function JobsPage() {
         clearTimeout(timeoutId);
       };
     }
-  }, [page, term]);
+  }, [page, term, companiesFilterStr, departmentsFilterStr]);
 
   const printJobs = () => {
     if (data.total === 0) {
@@ -75,7 +79,15 @@ function JobsPage() {
           alt="filter"
           onClick={() => setIsFilterOpen(true)}
         />
-        {isFilterOpen && <FilterMenu setIsFilterOpen={setIsFilterOpen} />}
+        {isFilterOpen && (
+          <FilterMenu
+            setIsFilterOpen={setIsFilterOpen}
+            setCompaniesStr={setCompaniesFilterStr}
+            setDepartmentsStr={setDepartmentsFilterStr}
+            companies={data.companies}
+            departments={data.departments}
+          />
+        )}
       </div>
       {loading ? (
         <h1>spinner</h1>
