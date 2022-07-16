@@ -1,0 +1,29 @@
+.filter-container {
+  width: 100%;
+  height: 100%;
+}
+
+.category-container {
+  margin-bottom: 10px;
+}
+
+.options-header {
+  margin-bottom: 5px;
+}
+
+.option-item {
+  margin: 2px;
+  padding: 2px 4px;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+}
+
+.option-item.active {
+  background-color: #1dbf73;
+  color: #ffffff;
+}
+
+.apply-btn {
+  padding: 4px;
+}

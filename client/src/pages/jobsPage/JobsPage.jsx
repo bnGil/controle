@@ -5,6 +5,7 @@ import Job from "../../components/job/Job";
 import controleAPI from "../../api/controleAPI";
 import AppPagination from "../../components/pagination/Pagination";
 import filterIcon from "../../assets/images/filter-icon.svg";
+import FilterMenu from "../../components/filterMenu/FilterMenu";
 
 function JobsPage() {
   const [data, setData] = useState({});
@@ -12,6 +13,7 @@ function JobsPage() {
   const [error, setError] = useState(null);
   const [term, setTerm] = useState("");
   const [page, setPage] = useState(1);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   useEffect(() => {
     const fetchDataFromAPI = async () => {
@@ -67,7 +69,13 @@ function JobsPage() {
           value={term}
           onChange={(e) => setTerm(e.target.value)}
         />
-        <img className="filter-icon" src={filterIcon} alt="filter" />
+        <img
+          className="filter-icon"
+          src={filterIcon}
+          alt="filter"
+          onClick={() => setIsFilterOpen(true)}
+        />
+        {isFilterOpen && <FilterMenu setIsFilterOpen={setIsFilterOpen} />}
       </div>
       {loading ? (
         <h1>spinner</h1>
