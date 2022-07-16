@@ -8,9 +8,11 @@ export const getJobs = async (req, res) => {
     const search = req.query.search || "";
     let company = req.query.company || "all";
     let department = req.query.department || "all";
+    let location = req.query.locations || "all";
 
     const companiesList = await Job.find({}).distinct("company");
     const departmentsList = await Job.find({}).distinct("department");
+    const locationsList = await Job.find({}).distinct("location");
 
     company =
       company === "all" ? [...companiesList] : req.query.company.split(",");
@@ -18,12 +20,16 @@ export const getJobs = async (req, res) => {
       department === "all"
         ? [...departmentsList]
         : req.query.department.split(",");
+    location =
+      location === "all" ? [...locationsList] : req.query.department.split(",");
 
     const jobs = await Job.find({ title: { $regex: search, $options: "i" } })
       .where("company")
       .in([...company])
       .where("department")
       .in([...department])
+      .where("location")
+      .in([...location])
       .sort("-createdAt")
       .skip(page * limit)
       .limit(limit);
@@ -31,6 +37,7 @@ export const getJobs = async (req, res) => {
     const total = await Job.countDocuments({
       company: { $in: [...company] },
       department: { $in: [...department] },
+      location: { $in: [...location] },
       title: { $regex: search, $options: "i" },
     });
 
@@ -40,6 +47,7 @@ export const getJobs = async (req, res) => {
       limit,
       companies: companiesList,
       departments: departmentsList,
+      locations: locationsList,
       jobs,
     };
 
