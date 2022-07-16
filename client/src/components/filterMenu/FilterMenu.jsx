@@ -8,17 +8,22 @@ function FilterMenu({
   setIsFilterOpen,
   setCompaniesStr,
   setDepartmentsStr,
+  setLocationsStr,
   companies,
   departments,
+  locations,
 }) {
   const [companiesArr, setCompaniesArr] = useState([]);
   const [departmentsArr, setDepartmentsArr] = useState([]);
+  const [locationsArr, setLocationsArr] = useState([]);
 
   const handleOnApply = () => {
     const companiesStr = companiesArr.join(",");
     const departmentsStr = departmentsArr.join(",");
+    const locationsStr = locationsArr.join(",");
     setCompaniesStr(companiesStr);
     setDepartmentsStr(departmentsStr);
+    setLocationsStr(locationsStr);
     setIsFilterOpen(false);
   };
 
@@ -45,6 +50,17 @@ function FilterMenu({
     }
   };
 
+  const handleLocationClick = (location) => {
+    const idx = locationsArr.indexOf(location);
+    if (idx === -1) {
+      setLocationsArr([...locationsArr, location]);
+    } else {
+      const newArr = [...locationsArr];
+      newArr.splice(idx, 1);
+      setLocationsArr(newArr);
+    }
+  };
+
   const printCompaniesOptions = () => {
     return companies.map((company, idx) => (
       <FilterItem key={idx} text={company} onClick={handleCompanyClick} />
@@ -54,6 +70,12 @@ function FilterMenu({
   const printDepartmentsOptions = () => {
     return departments.map((department, idx) => (
       <FilterItem key={idx} text={department} onClick={handleDepartmentClick} />
+    ));
+  };
+
+  const printLocationsOptions = () => {
+    return locations.map((location, idx) => (
+      <FilterItem key={idx} text={location} onClick={handleLocationClick} />
     ));
   };
 
@@ -70,9 +92,7 @@ function FilterMenu({
         </div>
         <div className="category-container">
           <h5 className="options-header">Locations</h5>
-          <div className="options-container">
-            <li className="option-item">Tel Aviv</li>
-          </div>
+          <div className="options-container">{printLocationsOptions()}</div>
         </div>
       </div>
       <button className="button apply-btn" onClick={handleOnApply}>

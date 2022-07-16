@@ -16,6 +16,7 @@ function JobsPage() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [companiesFilterStr, setCompaniesFilterStr] = useState("");
   const [departmentsFilterStr, setDepartmentsFilterStr] = useState("");
+  const [locationsFilterStr, setLocationsFilterStr] = useState("");
 
   useEffect(() => {
     const fetchDataFromAPI = async () => {
@@ -28,6 +29,7 @@ function JobsPage() {
             search: term,
             company: companiesFilterStr,
             department: departmentsFilterStr,
+            location: locationsFilterStr,
           },
         });
         setData(data);
@@ -49,7 +51,13 @@ function JobsPage() {
         clearTimeout(timeoutId);
       };
     }
-  }, [page, term, companiesFilterStr, departmentsFilterStr]);
+  }, [
+    page,
+    term,
+    companiesFilterStr,
+    departmentsFilterStr,
+    locationsFilterStr,
+  ]);
 
   const printJobs = () => {
     if (data.total === 0) {
@@ -84,8 +92,10 @@ function JobsPage() {
             setIsFilterOpen={setIsFilterOpen}
             setCompaniesStr={setCompaniesFilterStr}
             setDepartmentsStr={setDepartmentsFilterStr}
+            setLocationsStr={setLocationsFilterStr}
             companies={data.companies}
             departments={data.departments}
+            locations={data.locations}
           />
         )}
       </div>
