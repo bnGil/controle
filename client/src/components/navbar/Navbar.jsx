@@ -3,12 +3,12 @@ import MobileNavigation from "./MobileNavigation";
 import Navigation from "./Navigation";
 
 function Navbar() {
-  const { user, logout } = useUser();
+  const { logout, token } = useUser();
 
   return (
     <>
-      <Navigation user={user} logout={logout} />
-      <MobileNavigation user={user} logout={logout} />
+      <Navigation logout={logout} token={token} />
+      <MobileNavigation logout={logout} token={token} />
     </>
   );
 }

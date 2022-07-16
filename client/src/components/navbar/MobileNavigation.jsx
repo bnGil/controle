@@ -4,7 +4,7 @@ import { slide as Menu } from "react-burger-menu";
 
 import "./navigation.css";
 
-function MobileNavigation({ user, logout }) {
+function MobileNavigation({ token, logout }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -30,17 +30,17 @@ function MobileNavigation({ user, logout }) {
       >
         My Applications
       </NavLink>
-      {user && (
+      {token && (
         <a href="#" onClick={logout}>
           Logout
         </a>
       )}
-      {!user && (
+      {!token && (
         <NavLink onClick={() => setIsOpen(false)} to="/register">
           Register
         </NavLink>
       )}
-      {!user && (
+      {!token && (
         <NavLink onClick={() => setIsOpen(false)} to="/login">
           Login
         </NavLink>

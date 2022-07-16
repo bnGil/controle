@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
@@ -15,6 +15,13 @@ function UserProvider({ children }) {
   const [token, setToken] = useState("");
   const [cookies, setCookie, removeCookie] = useCookies(["token"]);
   const history = useHistory();
+
+  useEffect(() => {
+    if (cookies.token) {
+      setToken(cookies.token);
+      getUser(cookies.token);
+    }
+  }, []);
 
   const login = async (email, password) => {
     const { data } = await controleAPI.post("/user/login", {
@@ -53,16 +60,16 @@ function UserProvider({ children }) {
     history.push("/");
   };
 
-  // const getUser = async (token) => {
-  //   const { data } = await controleAPI.get("/user/me", {
-  //     headers: {
-  //       Authorization: token,
-  //     },
-  //   });
+  const getUser = async (token) => {
+    const { data } = await controleAPI.get("/user/profile", {
+      headers: {
+        Authorization: token,
+      },
+    });
 
-  //   setUser(data.user);
-  //   return data.user;
-  // };
+    setUser(data);
+    return data;
+  };
 
   const value = {
     user,

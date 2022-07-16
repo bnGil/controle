@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 import "./navigation.css";
 
-function Navigation({ user, logout }) {
+function Navigation({ user, logout, token }) {
   return (
     <div className="navbar-container">
       <nav className="navbar">
@@ -24,7 +24,7 @@ function Navigation({ user, logout }) {
           </NavLink>
         </div>
         <div className="rslinks-container">
-          {user ? (
+          {token ? (
             <a href="#" className="navlink" onClick={logout}>
               Logout
             </a>
