@@ -6,6 +6,7 @@ import controleAPI from "../../api/controleAPI";
 import AppPagination from "../../components/pagination/Pagination";
 import filterIcon from "../../assets/images/filter-icon.svg";
 import FilterMenu from "../../components/filterMenu/FilterMenu";
+import JobsSpinner from "../../components/spinner/JobsSpinner";
 
 function JobsPage() {
   const [data, setData] = useState({});
@@ -100,7 +101,7 @@ function JobsPage() {
         )}
       </div>
       {loading ? (
-        <h1>spinner</h1>
+        <JobsSpinner isShown={loading} />
       ) : (
         <>
           <ul className="jobs-list">{printJobs()}</ul>

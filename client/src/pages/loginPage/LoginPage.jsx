@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import "./loginPage.css";
 import { useUser } from "../../context/userContext";
+import JobsSpinner from "../../components/spinner/JobsSpinner";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
@@ -24,7 +25,7 @@ function LoginPage() {
   };
 
   if (loading) {
-    return <h1>spinner</h1>;
+    return <JobsSpinner isShown={loading} />;
   }
 
   if (error) {

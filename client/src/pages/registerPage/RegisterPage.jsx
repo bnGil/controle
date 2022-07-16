@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import JobsSpinner from "../../components/spinner/JobsSpinner";
 import { useUser } from "../../context/userContext";
 
 import "./registerPage.css";
@@ -27,7 +28,7 @@ function RegisterPage() {
   };
 
   if (loading) {
-    return <h1>spinner</h1>;
+    return <JobsSpinner isShown={loading} />;
   }
 
   if (error) {
