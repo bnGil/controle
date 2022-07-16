@@ -17,6 +17,7 @@
   border-radius: 3px;
   border: none;
   cursor: pointer;
+  background-color: #f0f0f0;
 }
 
 .option-item.active {
