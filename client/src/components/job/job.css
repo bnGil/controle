@@ -1,19 +1,15 @@
 .job-item {
   display: flex;
-
   border-bottom: 1px solid #808080;
   padding: 30px 50px;
-}
-
-.job-content {
-  width: 400px;
+  width: 600px;
 }
 
 .heartIcon {
   cursor: pointer;
   width: 24px;
   height: 24px;
-  margin: 0 20px;
+  margin-left: auto;
 }
 
 .company-img {
@@ -21,4 +17,14 @@
   height: 35px;
   border-radius: 5px;
   margin: 0 20px;
+}
+
+@media (max-width: 768px) {
+  .job-item {
+    width: 100%;
+  }
+
+  .company-img {
+    margin: 0;
+  }
 }
