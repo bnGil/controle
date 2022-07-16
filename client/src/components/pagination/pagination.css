@@ -10,4 +10,15 @@
   list-style-type: none;
   margin: 3px;
   cursor: pointer;
+  padding: 8px 16px;
+}
+
+.page-link.active {
+  background-color: #4267b2;
+  color: white;
+}
+
+.page-link:hover:not(.active) {
+  background-color: #ddd;
+  color: black;
 }

@@ -70,7 +70,9 @@ function JobsPage() {
       ) : (
         <ul className="jobs-list">{printJobs()}</ul>
       )}
-      {maxPage > 1 && <Pagination maxPage={maxPage} goToPage={setPage} />}
+      {maxPage > 1 && (
+        <Pagination maxPage={maxPage} goToPage={setPage} currPage={page} />
+      )}
     </div>
   );
 }
