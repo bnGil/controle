@@ -97,6 +97,7 @@ function JobsPage() {
             companies={data.companies}
             departments={data.departments}
             locations={data.locations}
+            setPage={setPage}
           />
         )}
       </div>

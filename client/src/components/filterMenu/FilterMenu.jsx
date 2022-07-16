@@ -12,6 +12,7 @@ function FilterMenu({
   companies,
   departments,
   locations,
+  setPage,
 }) {
   const [companiesArr, setCompaniesArr] = useState([]);
   const [departmentsArr, setDepartmentsArr] = useState([]);
@@ -24,6 +25,7 @@ function FilterMenu({
     setCompaniesStr(companiesStr);
     setDepartmentsStr(departmentsStr);
     setLocationsStr(locationsStr);
+    setPage(1);
     setIsFilterOpen(false);
   };
 
