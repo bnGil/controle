@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import "./jobsPage.css";
 import Job from "../../components/job/Job";
 import controleAPI from "../../api/controleAPI";
-import Pagination from "../../components/pagination/Pagination";
+import AppPagination from "../../components/pagination/Pagination";
 
 function JobsPage() {
   const [data, setData] = useState({});
@@ -14,6 +14,8 @@ function JobsPage() {
 
   useEffect(() => {
     const fetchDataFromAPI = async () => {
+      setLoading(true);
+      window.scrollTo({ top: 0 });
       try {
         const { data } = await controleAPI.get("/jobs", {
           params: {
@@ -68,10 +70,16 @@ function JobsPage() {
       {loading ? (
         <h1>spinner</h1>
       ) : (
-        <ul className="jobs-list">{printJobs()}</ul>
-      )}
-      {maxPage > 1 && (
-        <Pagination maxPage={maxPage} goToPage={setPage} currPage={page} />
+        <>
+          <ul className="jobs-list">{printJobs()}</ul>
+          <div className="pagination-container">
+            <AppPagination
+              maxPage={maxPage}
+              goToPage={setPage}
+              currPage={page}
+            />
+          </div>
+        </>
       )}
     </div>
   );
